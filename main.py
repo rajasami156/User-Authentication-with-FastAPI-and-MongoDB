@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from auth import auth_router, get_current_user
+from user_authentication import auth_router, get_current_user
 
 # Initialize FastAPI app
 app = FastAPI()

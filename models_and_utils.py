@@ -49,7 +49,6 @@ def create_access_token(data: str) -> str:
     to_encode = {"sub": data, "exp": expire}
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-
 async def send_recovery_email(email: str, recovery_code: str):
     message = EmailMessage()
     message["From"] = SMTP_MAIL_DEFAULT_SENDER
@@ -62,5 +61,24 @@ async def send_recovery_email(email: str, recovery_code: str):
             smtp.login(SMTP_USERNAME, SMTP_PASSWORD)
             smtp.send_message(message)
             return "Email sent successfully!"
+    except Exception as e:
+        return f"Failed to send email: {e}"
+
+async def send_welcome_email(email: str):
+    message = EmailMessage()
+    message["From"] = SMTP_MAIL_DEFAULT_SENDER
+    message["To"] = email
+    message["Subject"] = "Successful Registration with Zenpply"
+    message.set_content("""Welcome to Zenpply! 🎉 We're excited to have you on board.
+
+Whether you're an experienced professional 👩‍💼👨‍💼 or just starting your career 🎓, our automated job application submission service can help you streamline your job search. 🚀
+
+Log in to our website 💻 to get started and let us empower you to reach your career goals more efficiently. 🌟""")
+
+    try:
+        with smtplib.SMTP_SSL(host=SMTP_HOST, port=SMTP_PORT) as smtp:
+            smtp.login(SMTP_USERNAME, SMTP_PASSWORD)
+            smtp.send_message(message)
+            return "Welcome email sent successfully!"
     except Exception as e:
         return f"Failed to send email: {e}"
