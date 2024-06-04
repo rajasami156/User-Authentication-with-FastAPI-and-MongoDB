@@ -22,6 +22,15 @@ Ensure you have Python 3.7+ installed.
 Set up a virtual environment and install dependencies with pip.
 Configure your MongoDB connection string and credentials in the environment variables.
 Run the FastAPI server.
+
+#### Make sure to add this in your .env file:
+
+SMTP_HOST = smtp.gmail.com
+SMTP_PORT = 465
+SMTP_USERNAME = sami@gmail.com
+SMTP_PASSWORD  = v**v *** zzdv o**t
+SMTP_MAIL_DEFAULT_SENDER = Samiullah <nicesami156@@gmail.com>
+
 ## 📧 Email Configuration
 For the password recovery feature to work, set up a suitable email delivery service and provide its credentials.
 
